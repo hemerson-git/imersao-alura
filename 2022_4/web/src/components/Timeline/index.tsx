@@ -19,7 +19,7 @@ export function Timeline({ playlists, category }: TimelineProps) {
       <ul
         className="
         grid gap-4 grid-columns-[repeat(auto-fill,_minmax(200px,_1fr))] auto-rows-fr overflow-x-scroll
-        grid-flow-col auto-cols-[minmax(200px,_1fr)] snap-mandatory select-none scroll-hidden 
+        grid-flow-col auto-cols-[minmax(200px,_1fr)] snap-mandatory select-none scroll-hidden pb-4
       "
       >
         {playlists.map((video, index) => (

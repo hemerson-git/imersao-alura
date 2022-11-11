@@ -11,7 +11,7 @@ export function Header({ githubUser, menuItems }: HeaderProps) {
     <header
       className="
         flex items-center justify-between h-14 border border-solid border-gray-800
-        gap-4 fixed w-full bg-zinc-500 
+        gap-4 fixed w-full bg-zinc-500 px-4
       "
     >
       <Logo />

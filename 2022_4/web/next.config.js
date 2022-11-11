@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ["github.com", "img.youtube.com"],
+    domains: ["github.com", "img.youtube.com", "yt3.ggpht.com"],
   },
 };
 

@@ -6,6 +6,8 @@ import { Header } from "../components/Header";
 import { Timeline } from "../components/Timeline";
 
 import configs from "../../configs.json";
+import { Banner } from "../components/Banner";
+import { Favorite } from "../components/Favorite";
 
 interface PlaylistParams {
   title: string;
@@ -31,8 +33,36 @@ export default function Home() {
         menuItems={[configs.description, configs.github, configs.name]}
       />
 
+      <Banner bannerURL="/linus.jpg" />
+
       <main className="px-4">
-        <h1 className="text-3xl font-bold text-gray-100 mb-3">Hello, World</h1>
+        <h1 className="text-3xl font-bold text-gray-100 mb-6">
+          {configs.name}
+        </h1>
+
+        <section className="flex flex-col mb-4 text-gray-100">
+          <h2 className="font-bold text-xl mb-4">Favorites</h2>
+
+          <div className="flex gap-3">
+            {configs.favorites.map((favorite) => (
+              <Favorite
+                thumb={favorite.thumb}
+                url={favorite.url}
+                key={favorite.url}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="w-full overflow-hidden">
+          {playlistItems.map((playlistItem, index) => (
+            <Timeline
+              key={index}
+              category={playlistItem[0]}
+              playlists={playlistItem[1] as any as PlaylistParams[]}
+            />
+          ))}
+        </section>
       </main>
 
       {/* <div>
@@ -46,16 +76,6 @@ export default function Home() {
           ))}
         </ul>
       </div> */}
-
-      <section className="w-full overflow-hidden p-4">
-        {playlistItems.map((playlistItem, index) => (
-          <Timeline
-            key={index}
-            category={playlistItem[0]}
-            playlists={playlistItem[1] as any as PlaylistParams[]}
-          />
-        ))}
-      </section>
     </div>
   );
 }

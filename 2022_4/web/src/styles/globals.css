@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .scroll-hidden {
-  scrollbar-width: 0;
+  scrollbar-width: 0.375rem;
 }
