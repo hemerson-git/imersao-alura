@@ -19,6 +19,7 @@ export default function Home() {
   const playlistItems = Object.entries(configs.playlists);
   const playlistCategories = Object.keys(configs.playlists);
   const [selectedCategory, setSelectedCategory] = useState("jogos");
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <div className="bg-zinc-900 min-h-screen">
@@ -29,8 +30,9 @@ export default function Home() {
       </Head>
 
       <Header
+        onChangeSearchValue={setSearchValue}
         githubUser="hemerson-git"
-        menuItems={[configs.description, configs.github, configs.name]}
+        // menuItems={[configs.description, configs.github, configs.name]}
       />
 
       <Banner bannerURL="/linus.jpg" />
@@ -57,6 +59,7 @@ export default function Home() {
         <section className="w-full overflow-hidden">
           {playlistItems.map((playlistItem, index) => (
             <Timeline
+              query={searchValue}
               key={index}
               category={playlistItem[0]}
               playlists={playlistItem[1] as any as PlaylistParams[]}
