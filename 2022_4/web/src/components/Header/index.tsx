@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Logo } from "../Logo";
 
 interface HeaderProps {
   githubUser: string;
@@ -7,14 +8,13 @@ interface HeaderProps {
 
 export function Header({ githubUser, menuItems }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between py-2 px-4 bg-red-500">
-      <Image
-        src={`https://github.com/${githubUser}.png`}
-        alt="Hemerson Oliveira"
-        width={80}
-        height={80}
-        className="rounded-full"
-      />
+    <header
+      className="
+        flex items-center justify-between h-14 border border-solid border-gray-800
+        gap-4 fixed w-full bg-zinc-500 
+      "
+    >
+      <Logo />
 
       <nav>
         <ul className="flex flex-1 gap-2 justify-end font-bold">
@@ -23,7 +23,9 @@ export function Header({ githubUser, menuItems }: HeaderProps) {
               key={index}
               className="hover:underline hover:underline-offset-2"
             >
-              <a href="">{menuItem}</a>
+              <a href="" className="hover:opacity-50 transition-opacity">
+                {menuItem}
+              </a>
             </li>
           ))}
         </ul>

@@ -32,12 +32,10 @@ export default function Home() {
       />
 
       <main className="px-4">
-        <h1 className="text-3xl font-bold text-white mt-2 mb-3">
-          Hello, World
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-100 mb-3">Hello, World</h1>
       </main>
 
-      <div>
+      {/* <div>
         <ul>
           {playlistCategories.map((playlistCategory, index) => (
             <li key={`${playlistCategory}-${index}`}>
@@ -47,19 +45,17 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
-      {playlistItems.map((playlistItem, index) => {
-        return (
-          selectedCategory === playlistItem[0] && (
-            <Timeline
-              key={index}
-              category={playlistItem[0]}
-              playlists={playlistItem[1] as any as PlaylistParams[]}
-            />
-          )
-        );
-      })}
+      <section className="w-full overflow-hidden p-4">
+        {playlistItems.map((playlistItem, index) => (
+          <Timeline
+            key={index}
+            category={playlistItem[0]}
+            playlists={playlistItem[1] as any as PlaylistParams[]}
+          />
+        ))}
+      </section>
     </div>
   );
 }
