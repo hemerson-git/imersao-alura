@@ -1,8 +1,9 @@
-import { ChangeEvent, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { Logo } from "../Logo";
 import { Search } from "../Search";
 import { useTheme } from "../../hooks/useTheme";
+import * as Switch from "@radix-ui/react-switch";
+import { Moon, Sun } from "phosphor-react";
 
 interface HeaderProps {
   githubUser: string;
@@ -35,14 +36,33 @@ export function Header({
     >
       <Logo />
 
-      <Search
-        onClick={() => handleSearch(search)}
-        placeholder="Digite a sua busca"
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
+      <div className="flex items-center gap-4">
+        <Search
+          onClick={() => handleSearch(search)}
+          placeholder="Digite a sua busca"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
 
-      <button onClick={toggleTheme}>{theme}</button>
+        <Switch.Root
+          onClick={toggleTheme}
+          className="w-10 h-6 bg-zinc-900 rounded-xl relative aria-checked:bg-zinc-400"
+          type="button"
+        >
+          <Switch.Thumb
+            className={`
+            flex w-6 h-6 rounded-full items-center justify-center
+            absolute top-0 ${
+              theme === "DARK"
+                ? "left-0 bg-zinc-400 text-zinc-600"
+                : "right-0 bg-zinc-900 text-gray-400"
+            }
+          `}
+          >
+            {theme === "DARK" ? <Moon /> : <Sun />}
+          </Switch.Thumb>
+        </Switch.Root>
+      </div>
 
       {menuItems && (
         <nav>
