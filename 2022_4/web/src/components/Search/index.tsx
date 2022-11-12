@@ -1,11 +1,14 @@
 import { InputHTMLAttributes } from "react";
 import { MagnifyingGlass } from "phosphor-react";
+import { useTheme } from "../../hooks/useTheme";
 
 interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
   onClick: () => void;
 }
 
 export function Search({ onClick, ...rest }: SearchProps) {
+  const { theme } = useTheme();
+
   return (
     <div className="flex items-center">
       <input
@@ -14,8 +17,17 @@ export function Search({ onClick, ...rest }: SearchProps) {
         {...rest}
       />
 
-      <button onClick={onClick} className="bg-zinc-900 h-10 px-4 rounded-r-md">
-        <MagnifyingGlass size={20} color="white" />
+      <button
+        onClick={onClick}
+        className={`${
+          theme === "DARK" ? "bg-zinc-900" : "bg-gray-200"
+        } h-10 px-4 rounded-r-md`}
+      >
+        <MagnifyingGlass
+          size={20}
+          weight="bold"
+          color={`${theme === "DARK" ? "white" : "black"}`}
+        />
       </button>
     </div>
   );

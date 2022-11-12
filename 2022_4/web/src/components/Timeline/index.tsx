@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTheme } from "../../hooks/useTheme";
 
 interface PlaylistParams {
   title: string;
@@ -13,8 +14,14 @@ export interface TimelineProps {
 }
 
 export function Timeline({ playlists, query = "", category }: TimelineProps) {
+  const { theme } = useTheme();
+
   return (
-    <div className="flex flex-col w-full overflow-hidden mb-6 text-gray-100">
+    <div
+      className={`flex flex-col w-full overflow-hidden mb-6 ${
+        theme === "DARK" ? "text-gray-100" : "text-zinc-900"
+      }`}
+    >
       <h2 className="mb-4 capitalize font-bold">{category}</h2>
 
       <ul
@@ -26,7 +33,7 @@ export function Timeline({ playlists, query = "", category }: TimelineProps) {
         {playlists.map((video, index) => {
           {
             return (
-              video.title.includes(query) && (
+              video.title.toLocaleLowerCase().includes(query.toLowerCase()) && (
                 <li className="snap-start" key={index}>
                   <a
                     href={video.url}

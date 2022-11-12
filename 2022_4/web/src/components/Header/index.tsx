@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import { Logo } from "../Logo";
 import { Search } from "../Search";
+import { useTheme } from "../../hooks/useTheme";
 
 interface HeaderProps {
   githubUser: string;
@@ -15,6 +16,7 @@ export function Header({
   menuItems,
 }: HeaderProps) {
   const [search, setSearch] = useState("");
+  const { theme, toggleTheme } = useTheme();
 
   function handleSearch(query: string) {
     onChangeSearchValue(query);
@@ -22,10 +24,14 @@ export function Header({
 
   return (
     <header
-      className="
-        flex items-center justify-between h-14 border border-solid border-gray-800
-        gap-4 fixed w-full bg-zinc-500 px-4
-      "
+      className={`
+        flex items-center justify-between h-14 border border-solid
+        gap-4 fixed w-full ${
+          theme === "DARK"
+            ? "bg-zinc-500 border-gray-800"
+            : "bg-white border-gray-100"
+        } px-4
+      `}
     >
       <Logo />
 
@@ -35,6 +41,8 @@ export function Header({
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
+
+      <button onClick={toggleTheme}>{theme}</button>
 
       {menuItems && (
         <nav>
